@@ -26,10 +26,10 @@ Station = Base.classes.station
 # Create our session (link) from Python to the DB
 def date_prev_year():
     session = Session(engine)
-    most_recent_date = session.query(func.max(Measurement.date)).first()[0]
-    first_date = dt.datetime.strptime(most_recent_date, "%Y-%m-%d") - dt.timedelta(days=365) 
+    recent_date = session.query(func.max(Measurement.date)).first()[0]
+    date = dt.datetime.strptime(recent_date, "%Y-%m-%d") - dt.timedelta(days=365) 
     session.close()  
-    return(first_date) 
+    return(date) 
 
 #################################################
 # Flask Setup
